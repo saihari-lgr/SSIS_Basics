@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{CFC2F465-F98B-4E4C-84EC-9F14C3F8DE77}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{CC8BDDC1-7504-4E86-B0C9-5F882C2A5C6F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -162,7 +162,7 @@
                     <property
                       dataType="System.Boolean"
                       description="Specifies whether zero-length columns are treated as null."
-                      name="RetainNulls">false</property>
+                      name="RetainNulls">true</property>
                     <property
                       dataType="System.String"
                       description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
@@ -543,27 +543,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="131.2,41.6"
-          Id="Package\Read Tab Delimter Files\Load Tab Delimiter Data\Get Flat file"
-          TopLeft="339.166648135418,54.5999996203184" />
-        <NodeLayout
           Size="175.2,41.6"
           Id="Package\Read Tab Delimter Files\Load Tab Delimiter Data\Load Employee Data"
           TopLeft="319.16664922817,178.533332091835" />
+        <NodeLayout
+          Size="131.2,41.6"
+          Id="Package\Read Tab Delimter Files\Load Tab Delimiter Data\Get Flat file"
+          TopLeft="342.499981286626,56.3333329415984" />
         <EdgeLayout
           Id="Package\Read Tab Delimter Files\Load Tab Delimiter Data.Paths[Flat File Source Output]"
-          TopLeft="405.766648681794,96.1999996203184">
+          TopLeft="407.433315257398,97.9333329415984">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,82.3333324715165"
+              EndConnector="0,80.5999991502366"
               Start="0,0"
-              End="0,74.8333324715165">
+              End="0,73.0999991502366">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,74.8333324715165" />
+                    End="0,73.0999991502366" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
