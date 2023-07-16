@@ -1,0 +1,592 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/16/2023 12:45:47 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-PD9SE9U"
+  DTS:CreatorName="DESKTOP-PD9SE9U\Sai"
+  DTS:DTSID="{C352DFB0-608D-45AA-BEE0-4C12B8C22A9F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5223.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{66999C92-3031-4320-BB93-DF9DDA28D52C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-PD9SE9U.Sample]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D5686655-8661-4B8B-AF2B-0D11C3BDCD57}"
+      DTS:ObjectName="DESKTOP-PD9SE9U.Sample">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PD9SE9U;Initial Catalog=Sample;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D5686655-8661-4B8B-AF2B-0D11C3BDCD57}DESKTOP-PD9SE9U.Sample;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{5BAB6DF7-5CFF-4B91-A1AC-2865E21D811D}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::varFolderName] + "\\" +  @[User::varFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="RaggedRight"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter="_x000D__x000A_"
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="E:\git\FilePath\Inbound\">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="21"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:ObjectName="FirstName   "
+              DTS:DTSID="{EBC945CF-3027-416D-B633-343007078CF0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="16"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:ObjectName="LastName  "
+              DTS:DTSID="{6698B9F0-5377-47DB-99CB-37DBE20EF37A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="32"
+              DTS:MaximumWidth="100"
+              DTS:DataType="129"
+              DTS:ObjectName="Address       "
+              DTS:DTSID="{B54F4DE2-2F47-4530-89DA-9C497322DF68}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PhoneNumber"
+              DTS:DTSID="{37B70209-A5B7-4BFC-81F5-A3F52559CF97}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{82397BD1-A6E9-4CA5-8C88-0C8DBAEA0EC2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varFileName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB345266-FC20-422E-A415-F8499D88323E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="varFolderName">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\git\FilePath\Inbound</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Read Fixed Width files"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{EAF4B75A-FEEA-4512-BA58-10E7E67A4C0A}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Read Fixed Width files">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{8DE582DB-03B4-46B7-B338-297FABF674D7}"
+        DTS:ObjectName="{8DE582DB-03B4-46B7-B338-297FABF674D7}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[User::varFolderName]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="E:\git\FilePath\Inbound" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="1" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Read Fixed Width files\Load Fixed Width files"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0911685B-E19F-437C-89ED-BDCE7A39BD6F}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load Fixed Width files"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="Get Files"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[FirstName   ]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[FirstName   ]"
+                          length="100"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[FirstName   ]"
+                          name="FirstName   "
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[LastName  ]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[LastName  ]"
+                          length="100"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[LastName  ]"
+                          name="LastName  "
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[Address       ]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[Address       ]"
+                          length="100"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[Address       ]"
+                          name="Address       "
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[PhoneNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
+                          length="20"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[PhoneNumber]"
+                          name="PhoneNumber"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[FirstName   ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="FirstName   " />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[LastName  ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="LastName  " />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[Address       ]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Address       " />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PhoneNumber" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load Employee Data"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Employee]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DESKTOP-PD9SE9U.Sample]"
+                      connectionManagerRefId="Package.ConnectionManagers[DESKTOP-PD9SE9U.Sample]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].Columns[PhoneNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="PhoneNumber"
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[PhoneNumber]"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[PhoneNumber]" />
+                        <inputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].Columns[FirstName   ]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="FirstName   "
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[FirstName   ]" />
+                        <inputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].Columns[LastName  ]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="LastName  "
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[LastName  ]" />
+                        <inputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].Columns[Address       ]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="Address       "
+                          externalMetadataColumnId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output].Columns[Address       ]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                          dataType="i4"
+                          name="Id" />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="FirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="LastName" />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[Address]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Address" />
+                        <externalMetadataColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input].ExternalColumns[PhoneNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="PhoneNumber" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Read Fixed Width files\Load Fixed Width files.Paths[Flat File Source Output]"
+                  endId="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Read Fixed Width files\Load Fixed Width files\Get Files.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{9626B304-42D3-44F4-8CAD-B57B608192E9}"
+          DTS:ObjectName="{9626B304-42D3-44F4-8CAD-B57B608192E9}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::varFileName" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Read Fixed Width files\Load Fixed Width files"
+          TopLeft="29.1846022505798,26.133332294888" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="235.2,120.8"
+          Size="235.2,164"
+          Id="Package\Read Fixed Width files"
+          TopLeft="211.025629495709,80.3333327747054" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Read Fixed Width files\Load Fixed Width files">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Read Fixed Width files\Load Fixed Width files\Get Files"
+          TopLeft="339.99998142322,70.1999995118379" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data"
+          TopLeft="308.333316486744,188.066665358875" />
+        <EdgeLayout
+          Id="Package\Read Fixed Width files\Load Fixed Width files.Paths[Flat File Source Output]"
+          TopLeft="397.966648954982,111.799999511838">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76.2666658470366"
+              Start="0,0"
+              End="0,68.7666658470366">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.7666658470366" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Read Fixed Width files\Load Fixed Width files\Load Employee Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
